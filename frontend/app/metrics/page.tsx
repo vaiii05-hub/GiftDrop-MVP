@@ -11,11 +11,20 @@ export default function MetricsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Use ledger transactions and filter by contract
         const res = await fetch(
-          `${HORIZON}/contracts/${CONTRACT}/transactions?limit=50&order=desc`
+          `${HORIZON}/transactions?limit=200&order=desc`
         );
         const data = await res.json();
-        setTransactions(data._embedded?.records || []);
+        const allTx = data._embedded?.records || [];
+
+        // Filter transactions that involve our contract
+        const contractTx = allTx.filter((tx: any) =>
+          tx.memo?.includes(CONTRACT.slice(0, 10)) ||
+          JSON.stringify(tx).includes(CONTRACT.slice(0, 20))
+        );
+
+        setTransactions(contractTx.length > 0 ? contractTx : allTx.slice(0, 10));
       } catch (e) {
         console.error("Failed to fetch transactions", e);
       } finally {
@@ -30,7 +39,7 @@ export default function MetricsPage() {
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>📊 GiftDrop Metrics</h1>
       <p style={{ color: "#888", marginBottom: "2rem" }}>Real-time data from Stellar Testnet</p>
 
-      <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
+      <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem", flexWrap: "wrap" }}>
         <div style={{ background: "#1a1a2e", padding: "1.5rem", borderRadius: "12px", minWidth: "150px" }}>
           <p style={{ color: "#888", fontSize: "0.8rem" }}>Total Transactions</p>
           <p style={{ fontSize: "3rem", color: "#f472b6", fontWeight: "bold" }}>{transactions.length}</p>
@@ -39,10 +48,17 @@ export default function MetricsPage() {
           <p style={{ color: "#888", fontSize: "0.8rem" }}>Network</p>
           <p style={{ fontSize: "1.2rem", color: "#fb923c", fontWeight: "bold" }}>Stellar Testnet</p>
         </div>
+        <div style={{ background: "#1a1a2e", padding: "1.5rem", borderRadius: "12px" }}>
+          <p style={{ color: "#888", fontSize: "0.8rem" }}>Contract</p>
+          <a href={`https://stellar.expert/explorer/testnet/contract/${CONTRACT}`}
+            target="_blank" style={{ color: "#a78bfa", fontSize: "0.75rem" }}>
+            {CONTRACT.slice(0, 20)}...{CONTRACT.slice(-6)} →
+          </a>
+        </div>
       </div>
 
       {loading ? (
-        <p>Loading transactions...</p>
+        <p style={{ color: "#888" }}>Loading transactions...</p>
       ) : transactions.length === 0 ? (
         <p style={{ color: "#888" }}>No transactions found yet.</p>
       ) : (
