@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { logger } from "../lib/logger";
 import { useState, useEffect } from "react";
 import { connectWallet, getWalletAddress } from "@/lib/stellar";
 
@@ -7,6 +8,7 @@ export default function Home() {
   const [address, setAddress] = useState<string | null>(null);
 
   useEffect(() => {
+     logger.info("GiftDrop app loaded", { timestamp: new Date().toISOString() });
     getWalletAddress().then(setAddress);
   }, []);
 
