@@ -53,6 +53,9 @@ export default function Navbar() {
           <Link href="/dashboard" className="text-gray-300 hover:text-pink-400 transition-colors">
             Dashboard
           </Link>
+          <Link href="/metrics" className="text-gray-300 hover:text-pink-400 transition-colors">
+            Metrics
+          </Link>
         </div>
 
         {/* Wallet Button */}
