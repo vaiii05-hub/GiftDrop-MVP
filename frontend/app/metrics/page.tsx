@@ -12,8 +12,8 @@ export default function MetricsPage() {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `${HORIZON}/contracts/${CONTRACT}/transactions?limit=50&order=desc`
-        );
+       `${HORIZON}/accounts/${CONTRACT}/operations?limit=50&order=desc`
+      );
         const data = await res.json();
         setTransactions(data._embedded?.records || []);
       } catch (e) {
