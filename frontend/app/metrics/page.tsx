@@ -13,12 +13,14 @@ export default function MetricsPage() {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `${HORIZON}/accounts/${DEPLOYER}/operations?limit=200&order=desc`
+         `${HORIZON}/accounts/${DEPLOYER}/operations?limit=200&order=desc`
         );
         const data = await res.json();
         const allOps = data._embedded?.records || [];
         const contractOps = allOps.filter(
-          (op: any) => op.type === "invoke_host_function"
+          (op: any) =>
+            op.type === "invoke_host_function" &&
+            JSON.stringify(op).includes(CONTRACT)
         );
         setOperations(contractOps);
       } catch (e) {
