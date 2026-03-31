@@ -256,8 +256,8 @@ Feedback was collected from **32 testnet users** via Google Form.
 
 | # | User Feedback | Improvement Made |
 |---|---------------|-----------------|
-| 6 | "Hard to find the metrics page" | Added Metrics link directly to the navigation bar for easy access |
-| 7 | "Some users were contributing too much, leaving less room for others" | Implemented per-user max contribution limit enforced on-chain |
+| 1 | "Hard to find the metrics page" | Added Metrics link directly to the navigation bar for easy access |
+| 2 | "Some users were contributing too much, leaving less room for others" | Implemented per-user max contribution limit enforced on-chain |
 
 ---
 
