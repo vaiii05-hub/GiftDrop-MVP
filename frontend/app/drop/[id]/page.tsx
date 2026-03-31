@@ -22,6 +22,7 @@ export default function DropPage() {
   const [copied, setCopied] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [txHash, setTxHash] = useState<string>("");
+  const [limitError, setLimitError] = useState<string>("");
 
   useEffect(() => {
     if (!dropId) return;
@@ -44,11 +45,21 @@ export default function DropPage() {
   }, [dropId]);
 
   const handleContribute = async () => {
+    const amt = parseFloat(amount) || 0;
+
+    // Check max contribution limit
+    if (gift.max_contribution && amt > fromStroops(gift.max_contribution)) {
+      setLimitError(
+        `⚠️ Maximum contribution limit is ${fromStroops(gift.max_contribution).toFixed(2)} XLM per person. Please enter an amount of ${fromStroops(gift.max_contribution).toFixed(2)} XLM or less.`
+      );
+      return;
+    }
+
+    setLimitError("");
     setLoading(true);
     try {
       const addr = address || (await connectWallet());
       setAddress(addr);
-      const amt = parseFloat(amount) || 0;
       const hash = await contributeOnChain(addr, dropId, amt);
       setTxHash(hash);
       setContributed(true);
@@ -133,6 +144,11 @@ export default function DropPage() {
                 {new Date(Number(gift.deadline) * 1000).toLocaleDateString()}
               </span>
             </div>
+            {gift.max_contribution && (
+              <div className="bg-yellow-500/20 text-yellow-400 rounded-lg px-3 py-1.5 text-xs font-semibold">
+                Max: {fromStroops(gift.max_contribution).toFixed(2)} XLM/person
+              </div>
+            )}
             <div className="bg-green-500/20 text-green-400 rounded-lg px-3 py-1.5 text-xs font-semibold">
               {gift.is_released ? "COMPLETED" : isExpired ? "EXPIRED" : "ACTIVE"}
             </div>
@@ -175,7 +191,10 @@ export default function DropPage() {
                 <input
                   type="number"
                   value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
+                  onChange={(e) => {
+                    setAmount(e.target.value);
+                    setLimitError("");
+                  }}
                   placeholder="Enter XLM amount..."
                   className="flex-1 bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
                 />
@@ -187,6 +206,11 @@ export default function DropPage() {
                   {loading ? "Processing..." : "Lock Funds 🔒"}
                 </button>
               </div>
+              {limitError && (
+                <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl px-4 py-3 mb-2">
+                  <p className="text-yellow-400 text-sm">{limitError}</p>
+                </div>
+              )}
               <p className="text-gray-500 text-xs">
                 Funds are locked in Soroban smart contract on Stellar testnet.
               </p>
@@ -202,8 +226,7 @@ export default function DropPage() {
                 Your contribution is locked on-chain.
               </p>
               {txHash && (
-                
-                 <a href={explorerBase + txHash}
+                <a href={explorerBase + txHash}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-purple-400 text-sm hover:text-purple-300 underline"

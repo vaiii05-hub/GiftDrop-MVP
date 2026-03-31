@@ -27,6 +27,7 @@ export default function CreatePage() {
     deadline: "",
     revealDate: "",
     message: "",
+    maxContribution: "",
   });
 
   const handleChange = (
@@ -206,6 +207,22 @@ export default function CreatePage() {
                     placeholder="e.g. 100"
                     className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-pink-500 focus:outline-none"
                   />
+                </div>
+                <div>
+                  <label className="text-gray-400 text-sm mb-2 block">
+                    Max Contribution Per User (XLM)
+                  </label>
+                  <input
+                    name="maxContribution"
+                    type="number"
+                    value={form.maxContribution}
+                    onChange={handleChange}
+                    placeholder="e.g. 10 (optional)"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-pink-500 focus:outline-none"
+                  />
+                  <p className="text-gray-500 text-xs mt-1">
+                    Leave empty for no limit
+                  </p>
                 </div>
                 <div>
                   <label className="text-gray-400 text-sm mb-2 block">
