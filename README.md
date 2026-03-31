@@ -179,7 +179,8 @@ The Metrics page is accessible directly from the **navigation bar** (added as pa
 
 **Screenshot:**
 
-![GiftDrop Metrics Dashboard](./assets/metrics-dashboard.png)
+![GiftDrop Metrics Dashboard](<img width="1920" height="1080" alt="Screenshot 2026-03-31 215854" src="https://github.com/user-attachments/assets/ee40d987-b79b-49b1-8903-37904bcee3c5" />
+
 
 > *19 on-chain transactions as of March 30, 2026 — all verifiable on Stellar Expert.*
 
@@ -191,7 +192,8 @@ GiftDrop uses a **custom logger** (`frontend/lib/logger.ts`) that logs all key a
 
 **Screenshot:**
 
-![GiftDrop Monitoring — Console Logger](./assets/monitoring-console.png)
+![GiftDrop Monitoring — Console Logger](<img width="1920" height="1080" alt="Screenshot 2026-03-28 201948" src="https://github.com/user-attachments/assets/89840691-02ac-4ad2-8426-ce4a81759412" />
+)
 
 > *Console showing `[GiftDrop INFO] GiftDrop app loaded` — custom logger fires on every app load, confirming monitoring is active.*
 
