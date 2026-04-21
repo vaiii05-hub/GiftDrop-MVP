@@ -251,10 +251,6 @@ Feedback was collected from **32 testnet users** via Google Form.
 
 ### Implemented Improvements
 
-|| # | Feedback | Change Done | Commit ID |
-|---|----------|-------------|-----------|
-| 1 | Couldn't find metrics easily from the app | Added Metrics link directly to navbar | `cc46923` |
-| 2 | No limit on how much one person could contribute | Added per-user max contribution limit enforced on-chain | `2de757b` |
 
 ---
 
