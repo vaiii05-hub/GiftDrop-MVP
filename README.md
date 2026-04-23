@@ -316,7 +316,7 @@ Based on feedback from 32 testnet users:
 
 | # | Feedback | Change Done | Commit ID |
 |---|----------|-------------|-----------|
-| 1 | Couldn't find metrics easily from the app | Added Metrics link directly to navbar | [cc46923](https://github.com/vaiii05-hub/GiftDrop-MVP/commit/cc46923) |
+| 1 | Couldn't find metrics easily from the app | Added Metrics link directly to navbar | [5d59fef](https://github.com/vaiii05-hub/GiftDrop-MVP/commit/5d59fef) |
 | 2 | No limit on how much one person could contribute | Added per-user max contribution limit | [2de757b](https://github.com/vaiii05-hub/GiftDrop-MVP/commit/2de757b) |
 ---
 
