@@ -314,10 +314,10 @@ Based on feedback from 32 testnet users:
 
 ### Table 2 — User Feedback Implementation
 
-| # | Feedback | Change Done | Commit ID |
-|---|----------|-------------|-----------|
-| 1 | Couldn't find metrics easily from the app | Added Metrics link directly to navbar | [5d59fef](https://github.com/vaiii05-hub/GiftDrop-MVP/commit/5d59fef) |
-| 2 | No limit on how much one person could contribute | Added per-user max contribution limit | [2de757b](https://github.com/vaiii05-hub/GiftDrop-MVP/commit/2de757b) |
+| # | User Name | User Email | User Wallet Address | Feedback | Change Done | Commit ID |
+|---|-----------|------------|---------------------|----------|-------------|-----------|
+| 1 | Sumedh Chandanshive | sumedhchandanshive2004@gmail.com | GCXY4DOI4DOJOVISJSXCLXL25QF5SWK3JG4BIURXVNTCV2IFWNEHM2JU | "Adding a metrics window would make it even better" | Added Metrics link directly to navbar | [5d59fef](https://github.com/vaiii05-hub/GiftDrop-MVP/commit/5d59fef) |
+| 2 | Atharva Jadhav | atharvajj1@gmail.com | GDNKE22S6C3D3PPRGBKHB7SSQEMEZFDEZ223MOYCW73TQGRGI2BPAIG4 | "Should add the feature to user funding limit" | Added per-user max contribution limit enforced on-chain | [2de757b](https://github.com/vaiii05-hub/GiftDrop-MVP/commit/2de757b) |
 ---
 
 ### All 32 Wallet Addresses
